@@ -23,14 +23,31 @@
  */
 package minesweeper;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  *
- * @author veeti "walther" haapsamo
+ * @author veeti "walther" haapsamo // Help received from nikanj, thanks <3
  */
-public class Main {
+public class GUI {
 
-    public static void main(String[] args) {
-        CLI gui = new CLI();
-        //GUI gui = new GUI();
-    }   
+    public GUI() {
+        JFrame win = new JFrame();
+        win.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.fill = GridBagConstraints.BOTH;
+        c.weightx = 1;
+        c.weighty = 1;
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                c.gridx = j;
+                c.gridy = i;
+                win.add(new JButton("" + i + "," + j), c);
+            }
+        }
+        win.setSize(win.getPreferredSize());
+        win.setVisible(true);
+    }
 }
