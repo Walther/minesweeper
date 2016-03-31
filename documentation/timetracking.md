@@ -4,4 +4,5 @@
 |------------|---------------|-------|--------------------------------------------------------|
 | 2016-03-31 | 13:00 - 14:00 | 1     | Defining topic, initializing project and documentation |
 | 2016-03-31 | 15:00 - 19:30 | 4.5   | Initial working minesweeper implementation draft       |
+| 2016-03-31 | 20:00 - 00:00 | 4     | Creating initial GUI                                   |
 |            |               |       |                                                        |
