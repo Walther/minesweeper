@@ -103,10 +103,11 @@ class Board {
     }
 
     int step(int stepY, int stepX) { // return 0 = normal click, 1 = stepped on mine, 2 = won the game
+        this.board[stepY][stepX].setVisible();
+
         if (this.board[stepY][stepX].isMine()) {
             return 1;
         } else {
-            this.board[stepY][stepX].setVisible();
             if (this.board[stepY][stepX].isEmpty()) { // If hit an empty square, fill outwards
                 for (int k = stepY - 1; k <= stepY + 1; k++) { // three wide
                     for (int l = stepX - 1; l <= stepX + 1; l++) { // three high
@@ -114,7 +115,7 @@ class Board {
                         try {
                             if (this.board[k][l].isEmpty() && !this.board[k][l].isVisible()) {
                                 System.out.println("DEBUG: Was steppable, stepping");
-                                this.step(k,l);
+                                this.step(k, l);
                             } else if (!this.board[k][l].isMine()) {
                                 System.out.println("DEBUG: Hit a number instead, only revealing");
                                 this.board[k][l].setVisible();
@@ -131,10 +132,9 @@ class Board {
             }
             return 0;
         }
-        
-        
+
     }
-    
+
     int invisibleCount() {
         int count = 0;
         for (int i = 0; i < this.width; i++) {
@@ -145,5 +145,9 @@ class Board {
             }
         }
         return count;
+    }
+
+    Square getSquare(int y, int x) {
+        return board[y][x];
     }
 }
