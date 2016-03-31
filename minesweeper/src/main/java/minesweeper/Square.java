@@ -71,5 +71,13 @@ public class Square {
     boolean isVisible() {
         return this.visible;
     }
+
+    boolean isNumber() {
+        return this.value > 0 && this.value < 9;
+    }
+
+    int getValue() {
+        return this.value;
+    }
     
 }
