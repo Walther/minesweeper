@@ -94,7 +94,12 @@ class Board {
         String ret = "";
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
-                ret += this.board[i][j].toString();
+                Square sq = this.board[i][j];
+                if (sq.isVisible()) {
+                    ret += sq.toString();
+                } else {
+                    ret += "?";
+                }
             }
             ret += "\n";
         }

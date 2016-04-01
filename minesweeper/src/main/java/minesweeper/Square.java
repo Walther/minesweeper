@@ -36,36 +36,35 @@ public class Square {
         this.visible = false;
         this.value = 0; // 0-8 = amount of mines in the square's surroundings, 9 = mine
     }
-    
+
     public void setVisible() {
         this.visible = true;
     }
-    
+
     public void setMine() {
         this.value = 9;
     }
-    
+
     public void setValue(int value) {
-        this.value = value;
+        if (value >= 0 && value < 10) {
+            this.value = value;
+        }
+        else {
+            throw new IllegalArgumentException();
+        }
     }
-    
+
     public boolean isMine() {
         return this.value == 9;
     }
-    
+
     public boolean isEmpty() {
         return this.value == 0;
     }
-    
+
     @Override
     public String toString() {
-        if (this.visible) { // this.visible
-            if (this.isEmpty()) {
-                return ".";
-            } else return this.value + "";
-        } else {
-            return "?";
-        }
+        return this.value + "";
     }
 
     boolean isVisible() {
@@ -79,5 +78,5 @@ public class Square {
     int getValue() {
         return this.value;
     }
-    
+
 }
