@@ -24,3 +24,8 @@ Optional bonus goals:
 - [ ] Odd variants
   - [ ] Wraparound from edges?
   - [ ] Non-square grid?
+
+
+**Preliminary UML diagram**
+
+![uml-diagram](minesweeper-uml.png)
