@@ -50,14 +50,15 @@ public class CLI {
         boolean playing = true;
         while (playing) {
             System.out.println(board);
-            
+
             System.out.println("Where do you want to step? X = ");
             int stepX = scan.nextInt();
             System.out.println("Where do you want to step? Y = ");
             int stepY = scan.nextInt();
-            
+
             if (board.step(stepY, stepX) == 1) { // step returns 1 if you step on a mine
                 System.out.println("You stepped on a mine :(");
+                System.out.println(board);
                 playing = false;
             } else if (board.step(stepX, stepY) == 2) { // step returns 2 if you win
                 System.out.println("You won!");
