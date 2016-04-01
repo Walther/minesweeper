@@ -31,26 +31,65 @@ import java.util.Random;
  */
 class Board {
 
-    private Square[][] board;
+    private final Square[][] board;
     private final int mines;
     Random rn = new Random();
     private final int width;
     private final int height;
 
-    public Board(int x, int y, int mines) {
-        this.width = x;
-        this.height = y;
+    public Board(int width, int height, int mines) {
+        this.width = width;
+        this.height = height;
         this.mines = mines;
-
-        // Initialize x*y board with empty Squares
         this.board = new Square[this.width][this.height];
+
+        clear();
+        addMines();
+        addNumbers();
+        addNumbers();
+
+    }
+
+    private void addNumbers() {
+        // Calculate number values for squares
+        for (int y = 0; y < this.height; y++) {
+            for (int x = 0; x < this.width; x++) {
+                countNearbyMines(y, x);
+            }
+        }
+    }
+
+    private void clear() {
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
                 this.board[i][j] = new Square();
                 System.out.println("DEBUG: added square at " + i + "," + j);
             }
         }
+    }
 
+    private void countNearbyMines(int i, int j) {
+        int nearbyMines = 0;
+        if (!this.board[i][j].isMine()) { // Count nearby mines only if not mine itself
+            for (int k = i - 1; k <= i + 1; k++) { // three wide
+                for (int l = j - 1; l <= j + 1; l++) { // three high
+                    System.out.println("DEBUG: trying to see if " + l + "," + k + "has a mine");
+                    try {
+                        if (this.board[k][l].isMine()) {
+                            System.out.println("DEBUG: Had a mine");
+                            nearbyMines++;
+                        }
+                    } catch (ArrayIndexOutOfBoundsException exception) {
+
+                    }
+
+                }
+            }
+            this.board[i][j].setValue(nearbyMines);
+        }
+    }
+
+    private void addMines() {
         // Add mines
         int addedMines = 0;
         while (addedMines < this.mines) {
@@ -62,31 +101,6 @@ class Board {
                 addedMines++;
             }
         }
-
-        // Calculate values for squares
-        for (int i = 0; i < this.height; i++) { // i = y axis
-            for (int j = 0; j < this.width; j++) { // j = x axis
-                int nearbyMines = 0; // reset minecount
-                if (!this.board[i][j].isMine()) { // Count nearby mines only if not mine itself
-                    for (int k = i - 1; k <= i + 1; k++) { // three wide
-                        for (int l = j - 1; l <= j + 1; l++) { // three high
-                            System.out.println("DEBUG: trying to see if " + l + "," + k + "has a mine");
-                            try {
-                                if (this.board[k][l].isMine()) {
-                                    System.out.println("DEBUG: Had a mine");
-                                    nearbyMines++;
-                                }
-                            } catch (ArrayIndexOutOfBoundsException exception) {
-
-                            }
-
-                        }
-                    }
-                    this.board[i][j].setValue(nearbyMines);
-                }
-            }
-        }
-
     }
 
     @Override
@@ -107,6 +121,11 @@ class Board {
         return ret;
     }
 
+    // Step onto a square. Following things happen:
+    // - The square you stepped on is revealed
+    // - if it is a mine, return 1 - you lost
+    // - if you hit an empty square, areaFill other nearby empty squares + one row of numbers
+    // - if you opened the last non-mine square, return 2 - you won
     int step(int stepY, int stepX) { // return 0 = normal click, 1 = stepped on mine, 2 = won the game
         this.board[stepY][stepX].setVisible();
 
