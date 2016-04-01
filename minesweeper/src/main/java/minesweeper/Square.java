@@ -48,8 +48,7 @@ public class Square {
     public void setValue(int value) {
         if (value >= 0 && value < 10) {
             this.value = value;
-        }
-        else {
+        } else {
             throw new IllegalArgumentException();
         }
     }
