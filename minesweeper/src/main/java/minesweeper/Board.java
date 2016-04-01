@@ -46,17 +46,7 @@ class Board {
         clear();
         addMines();
         addNumbers();
-        addNumbers();
 
-    }
-
-    private void addNumbers() {
-        // Calculate number values for squares
-        for (int y = 0; y < this.height; y++) {
-            for (int x = 0; x < this.width; x++) {
-                countNearbyMines(y, x);
-            }
-        }
     }
 
     private void clear() {
@@ -65,27 +55,6 @@ class Board {
                 this.board[i][j] = new Square();
                 System.out.println("DEBUG: added square at " + i + "," + j);
             }
-        }
-    }
-
-    private void countNearbyMines(int i, int j) {
-        int nearbyMines = 0;
-        if (!this.board[i][j].isMine()) { // Count nearby mines only if not mine itself
-            for (int k = i - 1; k <= i + 1; k++) { // three wide
-                for (int l = j - 1; l <= j + 1; l++) { // three high
-                    System.out.println("DEBUG: trying to see if " + l + "," + k + "has a mine");
-                    try {
-                        if (this.board[k][l].isMine()) {
-                            System.out.println("DEBUG: Had a mine");
-                            nearbyMines++;
-                        }
-                    } catch (ArrayIndexOutOfBoundsException exception) {
-
-                    }
-
-                }
-            }
-            this.board[i][j].setValue(nearbyMines);
         }
     }
 
@@ -101,6 +70,39 @@ class Board {
                 addedMines++;
             }
         }
+    }
+
+    private void addNumbers() {
+        // Calculate number values for squares
+        for (int y = 0; y < this.height; y++) {
+            for (int x = 0; x < this.width; x++) {
+                if (!this.board[y][x].isMine()) {
+                    int nearby = countNearbyMines(y, x);
+                    this.board[y][x].setValue(nearby);
+                }
+
+            }
+        }
+    }
+
+    private int countNearbyMines(int i, int j) {
+        int nearbyMines = 0;
+        for (int k = i - 1; k <= i + 1; k++) { // three wide
+            for (int l = j - 1; l <= j + 1; l++) { // three high
+                System.out.println("DEBUG: trying to see if " + l + "," + k + "has a mine");
+                try {
+                    if (this.board[k][l].isMine()) {
+                        System.out.println("DEBUG: Had a mine");
+                        nearbyMines++;
+                    }
+                } catch (ArrayIndexOutOfBoundsException exception) {
+
+                }
+
+            }
+        }
+
+        return nearbyMines;
     }
 
     @Override
