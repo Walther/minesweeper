@@ -113,10 +113,26 @@ public class SquareTest {
      * Test of isMine method, of class Square.
      */
     @Test
-    public void testIsMine() {
-        System.out.println("isMine");
+    public void testIsMineOnEmpty() {
+        System.out.println("isMineOnEmpty");
         Square instance = new Square();
         assert (instance.isMine() == false);
+    }
+
+    @Test
+    public void testIsMineOnNumber() {
+        System.out.println("isMineOnNumber");
+        Square instance = new Square();
+        for (int value = 0; value < 9; value++) {
+            instance.setValue(value);
+            assert (instance.isMine() == false);
+        }
+    }
+
+    @Test
+    public void testIsMineOnMine() {
+        System.out.println("isMineOnMine");
+        Square instance = new Square();
         instance.setMine();
         assert (instance.isMine() == true);
     }
