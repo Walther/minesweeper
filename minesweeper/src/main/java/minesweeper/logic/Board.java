@@ -32,7 +32,7 @@ import java.util.Random;
 public class Board {
 
     private final Square[][] board;
-    private final int mines;
+    private int mines;
     Random rn = new Random();
     private final int width;
     private final int height;
@@ -50,10 +50,11 @@ public class Board {
     }
 
     private void clear() {
-        for (int i = 0; i < this.height; i++) {
-            for (int j = 0; j < this.width; j++) {
-                this.board[i][j] = new Square();
-                System.out.println("DEBUG: added square at " + i + "," + j);
+        for (int x = 0; x < this.width; x++) {
+            for (int y = 0; y < this.height; y++) {
+                System.out.println("DEBUG: Trying to add a square at " + x + "," + y);
+                this.board[x][y] = new Square();
+                System.out.println("DEBUG: added square at " + x + "," + y);
             }
         }
     }
@@ -72,17 +73,31 @@ public class Board {
         }
     }
 
-    private void addNumbers() {
+    // NOTE: has to be public due test cases, we need to be able to precisely set mines and recount
+    public void addNumbers() {
         // Calculate number values for squares
-        for (int y = 0; y < this.height; y++) {
-            for (int x = 0; x < this.width; x++) {
-                if (!this.board[y][x].isMine()) {
-                    int nearby = countNearbyMines(y, x);
-                    this.board[y][x].setValue(nearby);
+        for (int x = 0; x < this.width; x++) {
+            for (int y = 0; y < this.height; y++) {
+                if (!this.board[x][y].isMine()) {
+                    int nearby = countNearbyMines(x, y);
+                    this.board[x][y].setValue(nearby);
                 }
 
             }
         }
+    }
+    
+    // NOTE: for testing purposes only. TODO: clean up this hack somehow!
+    public void recountMines() {
+        int minesOnBoard = 0;
+        for (int x = 0; x < this.width; x++) {
+            for (int y = 0; y < this.height; y++) {
+                if (this.board[x][y].isMine()) {
+                    minesOnBoard++;
+                }
+            }
+        }
+        this.mines = minesOnBoard;
     }
 
     private int countNearbyMines(int i, int j) {
@@ -108,9 +123,9 @@ public class Board {
     @Override
     public String toString() {
         String ret = "";
-        for (int i = 0; i < this.height; i++) {
-            for (int j = 0; j < this.width; j++) {
-                Square sq = this.board[i][j];
+        for (int y = 0; y < this.height; y++) {
+            for (int x = 0; x < this.width; x++) {
+                Square sq = this.board[x][y];
                 if (sq.isVisible()) {
                     ret += sq.toString();
                 } else {
@@ -128,15 +143,15 @@ public class Board {
     // - if it is a mine, return 1 - you lost
     // - if you hit an empty square, areaFill other nearby empty squares + one row of numbers
     // - if you opened the last non-mine square, return 2 - you won
-    public int step(int stepY, int stepX) { // return 0 = normal click, 1 = stepped on mine, 2 = won the game
-        this.board[stepY][stepX].setVisible();
+    public int step(int stepX, int stepY) { // return 0 = normal click, 1 = stepped on mine, 2 = won the game
+        this.board[stepX][stepY].setVisible();
 
-        if (this.board[stepY][stepX].isMine()) {
+        if (this.board[stepX][stepY].isMine()) {
             return 1;
         } else {
-            if (this.board[stepY][stepX].isEmpty()) { // If hit an empty square, fill outwards
-                for (int k = stepY - 1; k <= stepY + 1; k++) { // three wide
-                    for (int l = stepX - 1; l <= stepX + 1; l++) { // three high
+            if (this.board[stepX][stepY].isEmpty()) { // If hit an empty square, fill outwards
+                for (int k = stepX - 1; k <= stepX + 1; k++) { // three wide
+                    for (int l = stepY - 1; l <= stepY + 1; l++) { // three high
                         System.out.println("DEBUG: trying to see if " + l + "," + k + "is steppable");
                         try {
                             if (this.board[k][l].isEmpty() && !this.board[k][l].isVisible()) {
