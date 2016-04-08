@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Walther/minesweeper.svg?branch=master)](https://travis-ci.org/Walther/minesweeper)
+
 # minesweeper
 
 Minesweeper written in Java for a university course.
