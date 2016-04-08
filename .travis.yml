@@ -2,4 +2,3 @@ language: java
 script: mvn test -f ./minesweeper/pom.xml
 jdk:
   - oraclejdk8
-  - openjdk8
