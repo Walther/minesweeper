@@ -77,7 +77,7 @@
                             <ignore>minesweeper.ui.*</ignore>
                         </ignores>
                         <excludes>
-                            <exclude>minesweeper.ui.*</exclude>
+                            <exclude>minesweeper/ui/*</exclude>
                         </excludes>
                     </instrumentation>
                 </configuration>
@@ -93,7 +93,7 @@
                 <configuration>
                     <instrumentation>
                         <excludes>
-                            <exclude>minesweeper.ui.*</exclude>
+                            <exclude>minesweeper/ui/*</exclude>
                         </excludes>
                         <ignores>
                             <ignore>minesweeper.ui.*</ignore>
