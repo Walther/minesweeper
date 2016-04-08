@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/Walther/minesweeper.svg?branch=master)](https://travis-ci.org/Walther/minesweeper)
+[![Coverage Status](https://coveralls.io/repos/github/Walther/minesweeper/badge.svg?branch=master)](https://coveralls.io/github/Walther/minesweeper?branch=master)
 
 # minesweeper
 
