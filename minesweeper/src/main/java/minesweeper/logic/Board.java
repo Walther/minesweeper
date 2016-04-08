@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package minesweeper;
+package minesweeper.logic;
 
 import java.util.Random;
 
@@ -29,7 +29,7 @@ import java.util.Random;
  *
  * @author veeti "walther" haapsamo
  */
-class Board {
+public class Board {
 
     private final Square[][] board;
     private final int mines;
@@ -128,7 +128,7 @@ class Board {
     // - if it is a mine, return 1 - you lost
     // - if you hit an empty square, areaFill other nearby empty squares + one row of numbers
     // - if you opened the last non-mine square, return 2 - you won
-    int step(int stepY, int stepX) { // return 0 = normal click, 1 = stepped on mine, 2 = won the game
+    public int step(int stepY, int stepX) { // return 0 = normal click, 1 = stepped on mine, 2 = won the game
         this.board[stepY][stepX].setVisible();
 
         if (this.board[stepY][stepX].isMine()) {
@@ -161,7 +161,7 @@ class Board {
 
     }
 
-    int invisibleCount() {
+    private int invisibleCount() {
         int count = 0;
         for (int i = 0; i < this.width; i++) {
             for (int j = 0; j < this.height; j++) {
@@ -173,7 +173,7 @@ class Board {
         return count;
     }
 
-    Square getSquare(int y, int x) {
+    public Square getSquare(int y, int x) {
         return board[y][x];
     }
 }

@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package minesweeper;
+package minesweeper.logic;
 
 /**
  *
@@ -66,15 +66,15 @@ public class Square {
         return this.value + "";
     }
 
-    boolean isVisible() {
+    public boolean isVisible() {
         return this.visible;
     }
 
-    boolean isNumber() {
+    public boolean isNumber() {
         return this.value > 0 && this.value < 9;
     }
 
-    int getValue() {
+    public int getValue() {
         return this.value;
     }
 

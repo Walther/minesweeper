@@ -23,6 +23,8 @@
  */
 package minesweeper;
 
+import minesweeper.ui.GUI;
+
 /**
  *
  * @author veeti "walther" haapsamo

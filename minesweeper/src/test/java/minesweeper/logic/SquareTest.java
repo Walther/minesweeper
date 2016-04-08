@@ -21,8 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package minesweeper;
+package minesweeper.logic;
 
+import minesweeper.logic.Square;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

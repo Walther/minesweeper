@@ -21,8 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package minesweeper;
+package minesweeper.ui;
 
+import minesweeper.logic.Board;
 import java.util.Scanner;
 
 /**

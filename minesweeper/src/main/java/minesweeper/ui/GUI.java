@@ -21,8 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package minesweeper;
+package minesweeper.ui;
 
+import minesweeper.logic.Square;
+import minesweeper.logic.Board;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
