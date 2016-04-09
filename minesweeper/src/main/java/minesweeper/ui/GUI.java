@@ -29,6 +29,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import minesweeper.logic.Game;
 
 /**
  *
@@ -51,86 +52,13 @@ public class GUI {
         int height = 20;
         int mines = 40;
 
-        Board board = new Board(width, height, mines);
+        Game game = new Game(width, height, mines);
+        Board board = game.board;
         JButton[] buttons = new JButton[width * height];
 
         // Main button logic
         ActionListener mineListener;
-        mineListener = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Step into the coordinate of button
-                int index = java.util.Arrays.asList(buttons).indexOf(e.getSource());
-                int y = index / width;
-                int x = index % width;
-
-                int ret = board.step(y, x);
-
-                // Update all buttons
-                for (int i = 0; i < width * height; i++) {
-                    int allY = i / width;
-                    int allX = i % width;
-
-                    Square currentSquare = board.getSquare(allY, allX);
-                    JButton currentButton = buttons[i];
-
-                    // Disable clicking on visible / seen squares
-                    if (currentSquare.isVisible()) {
-                        currentButton.setBackground(new Color(27, 28, 22));
-                    }
-                    // No text on empty squares
-                    if (currentSquare.isEmpty() && currentSquare.isVisible()) {
-                        currentButton.setText(" ");
-                    }
-                    // Set number on number square buttons
-                    if (currentSquare.isNumber() && currentSquare.isVisible()) {
-                        currentButton.setText(currentSquare.toString());
-                        int value = currentSquare.getValue();
-                        switch (value) {
-                            case 1:
-                                currentButton.setForeground(new Color(0x4eb4fa));
-                                break;
-                            case 2:
-                                currentButton.setForeground(new Color(0xfd971f));
-                                break;
-                            case 3:
-                                currentButton.setForeground(new Color(0xa6e22e));
-                                break;
-                            case 4:
-                                currentButton.setForeground(new Color(0xae81ff));
-                                break;
-                            case 5:
-                                currentButton.setForeground(new Color(0xf6f080));
-                                break;
-                            case 6:
-                                currentButton.setForeground(new Color(0x575855));
-                                break;
-                            case 7:
-                                currentButton.setForeground(new Color(0x000000));
-                                break;
-                            case 8:
-                                currentButton.setForeground(new Color(0xf92672));
-                                break;
-                            default:
-                                break;
-                        }
-
-                    }
-                    // If stepped on mine, turn stepped square red, show all mines, and disable all buttons
-                    if (ret == 1 && currentSquare.isMine()) {
-                        if (currentSquare.isVisible()) {
-                            currentButton.setBackground(new Color(0xf92672));
-
-                        }
-                        currentButton.setText("*");
-                        for (JButton btn : buttons) {
-                            btn.removeActionListener(this);
-
-                        }
-                    }
-
-                }
-            }
-        };
+        mineListener = new MineListener(game, buttons);
 
         // Add buttons for each square of the board
         for (int y = 0; y < height; y++) {

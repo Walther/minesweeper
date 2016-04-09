@@ -86,7 +86,7 @@ public class Board {
             }
         }
     }
-    
+
     // NOTE: for testing purposes only. TODO: clean up this hack somehow!
     public void recountMines() {
         int minesOnBoard = 0;
@@ -140,43 +140,32 @@ public class Board {
 
     // Step onto a square. Following things happen:
     // - The square you stepped on is revealed
-    // - if it is a mine, return 1 - you lost
-    // - if you hit an empty square, areaFill other nearby empty squares + one row of numbers
-    // - if you opened the last non-mine square, return 2 - you won
-    public int step(int stepX, int stepY) { // return 0 = normal click, 1 = stepped on mine, 2 = won the game
+    // - If hit an empty square, fill outwards
+    public void step(int stepX, int stepY) {
         this.board[stepX][stepY].setVisible();
 
-        if (this.board[stepX][stepY].isMine()) {
-            return 1;
-        } else {
-            if (this.board[stepX][stepY].isEmpty()) { // If hit an empty square, fill outwards
-                for (int k = stepX - 1; k <= stepX + 1; k++) { // three wide
-                    for (int l = stepY - 1; l <= stepY + 1; l++) { // three high
-                        System.out.println("DEBUG: trying to see if " + l + "," + k + "is steppable");
-                        try {
-                            if (this.board[k][l].isEmpty() && !this.board[k][l].isVisible()) {
-                                System.out.println("DEBUG: Was steppable, stepping");
-                                this.step(k, l);
-                            } else if (!this.board[k][l].isMine()) {
-                                System.out.println("DEBUG: Hit a number instead, only revealing");
-                                this.board[k][l].setVisible();
-                            }
-                        } catch (ArrayIndexOutOfBoundsException exception) {
-
+        if (this.board[stepX][stepY].isEmpty()) { 
+            for (int x = stepX - 1; x <= stepX + 1; x++) { // three wide
+                for (int y = stepY - 1; y <= stepY + 1; y++) { // three high
+                    System.out.println("DEBUG: trying to see if " + y + "," + x + "is steppable");
+                    try {
+                        if (this.board[x][y].isEmpty() && !this.board[x][y].isVisible()) {
+                            System.out.println("DEBUG: Was steppable, stepping");
+                            this.step(x, y);
+                        } else if (!this.board[x][y].isMine()) {
+                            System.out.println("DEBUG: Hit a number instead, only revealing");
+                            this.board[x][y].setVisible();
                         }
+                    } catch (ArrayIndexOutOfBoundsException exception) {
 
                     }
+
                 }
             }
-            if (invisibleCount() == this.mines) {
-                return 2;
-            }
-            return 0;
         }
-
     }
 
-    private int invisibleCount() {
+    public int invisibleCount() {
         int count = 0;
         for (int i = 0; i < this.width; i++) {
             for (int j = 0; j < this.height; j++) {
@@ -188,7 +177,7 @@ public class Board {
         return count;
     }
 
-    public Square getSquare(int y, int x) {
-        return board[y][x];
+    public Square getSquare(int x, int y) {
+        return board[x][y];
     }
 }

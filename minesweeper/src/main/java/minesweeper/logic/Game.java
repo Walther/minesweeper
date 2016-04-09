@@ -21,19 +21,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package minesweeper;
-
-import minesweeper.ui.CLI;
-import minesweeper.ui.GUI;
+package minesweeper.logic;
 
 /**
  *
  * @author veeti "walther" haapsamo
  */
-public class Main {
+public class Game {
+    // new Game();
+    // game inits Board
+    // on every turn, UI calls Game with a move
+    // Game uses Board
+    // Game checks status
+    // Game returns status
 
-    public static void main(String[] args) {
-        //CLI gui = new CLI();
-        GUI gui = new GUI();
+    public boolean playing;
+    public boolean won;
+    public final Board board;
+    public final int height;
+    public final int width;
+    private final int mines;
+
+    public Game(int x, int y, int mines) {
+        this.playing = true;
+        this.won = false;
+        this.width = x;
+        this.height = y;
+        this.mines = mines;
+        this.board = new Board(x, y, mines); // Default board. Change later to support asking for details
+    }
+
+    public void turn(int x, int y) {
+        // step on the board
+        board.step(x, y);
+        // check status
+        if (board.getSquare(x, y).isMine()) {
+            this.playing = false;
+        } else if (board.invisibleCount() == this.mines) { // TODO: make win logic better. Include flagging.
+            this.won = true;
+            this.playing = false;
+        }
     }
 }

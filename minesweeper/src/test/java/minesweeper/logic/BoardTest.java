@@ -80,37 +80,16 @@ public class BoardTest {
      * Test of step method, of class Board.
      */
     @Test
-    public void testStepMine() {
-        System.out.println("step");
-        int stepX = 0;
-        int stepY = 0;
-        int expResult = 1;
-        int result = instance.step(stepX, stepY);
-        assertEquals(expResult, result);
-    }
-    
-    @Test
-    public void testStepNumber() {
-        System.out.println("step");
-        int stepX = 1;
-        int stepY = 0;
-        int expResult = 0;
-        int result = instance.step(stepX, stepY);
-        assertEquals(expResult, result);
-    }
-    
-    @Test
-    public void testStepEmpty() {
-        // With this limited board, this will auto-win the level
+    public void testStep() {
         System.out.println("step");
         int stepX = 2;
         int stepY = 0;
-        int expResult = 2;
-        int result = instance.step(stepX, stepY);
-        System.out.println("TEST DEBUG: " + instance.toString());
+        instance.step(stepX, stepY);
+        String result = instance.toString();
+        String expResult = "?10\n";
         assertEquals(expResult, result);
     }
-
+    
     /**
      * Test of getSquare method, of class Board.
      */

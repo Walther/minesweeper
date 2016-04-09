@@ -25,6 +25,7 @@ package minesweeper.ui;
 
 import minesweeper.logic.Board;
 import java.util.Scanner;
+import minesweeper.logic.Game;
 
 /**
  *
@@ -46,7 +47,8 @@ public class CLI {
         System.out.println("How many mines do you want?");
         int mines = scan.nextInt();
 
-        Board board = new Board(width, height, mines);
+        Game game = new Game(width, height, mines);
+        Board board = game.board;
 
         boolean playing = true;
         while (playing) {
@@ -57,11 +59,13 @@ public class CLI {
             System.out.println("Where do you want to step? Y = ");
             int stepY = scan.nextInt();
 
-            if (board.step(stepY, stepX) == 1) { // step returns 1 if you step on a mine
+            game.turn(stepX, stepY);
+            
+            if (!game.playing && !game.won) {
                 System.out.println("You stepped on a mine :(");
                 System.out.println(board);
                 playing = false;
-            } else if (board.step(stepX, stepY) == 2) { // step returns 2 if you win
+            } else if (!game.playing && game.won) {
                 System.out.println("You won!");
                 System.out.println(board);
                 playing = false;
