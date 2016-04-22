@@ -14,3 +14,5 @@ Minesweeper written in Java for a university course.
 - A more detailed [project description](documentation/project-description.md)
 - Tracking of [time spent](documentation/timetracking.md) on the project
 - [User manual](documentation/user-manual.md)
+- Most recent [PIT report](https://htmlpreview.github.io/?https://github.com/Walther/minesweeper/blob/master/documentation/pit-reports/201604230011/index.html)
+- Most recent [Checkstyle report](https://htmlpreview.github.io/?https://github.com/Walther/minesweeper/blob/master/documentation/checkstyle-reports/201604230011/checkstyle.html)
