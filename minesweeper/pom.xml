@@ -79,6 +79,9 @@
                         <excludes>
                             <exclude>minesweeper/ui/*</exclude>
                         </excludes>
+                        <ignores>
+                            <ignore>minesweeper.Main</ignore>
+                        </ignores>
                     </instrumentation>
                 </configuration>
             </plugin>
@@ -95,6 +98,9 @@
                         <excludes>
                             <exclude>minesweeper/ui/*</exclude>
                         </excludes>
+                        <ignores>
+                            <ignore>minesweeper.Main</ignore>
+                        </ignores>
                         <ignores>
                             <ignore>minesweeper.ui.*</ignore>
                         </ignores>
