@@ -37,6 +37,12 @@ public class Board {
     private final int width;
     private final int height;
 
+    /**
+     *
+     * @param width
+     * @param height
+     * @param mines
+     */
     public Board(int width, int height, int mines) {
         this.width = width;
         this.height = height;
@@ -74,6 +80,10 @@ public class Board {
     }
 
     // NOTE: has to be public due test cases, we need to be able to precisely set mines and recount
+
+    /**
+     *
+     */
     public void addNumbers() {
         // Calculate number values for squares
         for (int x = 0; x < this.width; x++) {
@@ -88,6 +98,10 @@ public class Board {
     }
 
     // NOTE: for testing purposes only. TODO: clean up this hack somehow!
+
+    /**
+     *
+     */
     public void recountMines() {
         int minesOnBoard = 0;
         for (int x = 0; x < this.width; x++) {
@@ -120,6 +134,10 @@ public class Board {
         return nearbyMines;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         String ret = "";
@@ -141,6 +159,12 @@ public class Board {
     // Step onto a square. Following things happen:
     // - The square you stepped on is revealed
     // - If hit an empty square, fill outwards
+
+    /**
+     *
+     * @param stepX
+     * @param stepY
+     */
     public void step(int stepX, int stepY) {
         this.board[stepX][stepY].setVisible();
 
@@ -165,6 +189,10 @@ public class Board {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public int invisibleCount() {
         int count = 0;
         for (int i = 0; i < this.width; i++) {
@@ -177,6 +205,12 @@ public class Board {
         return count;
     }
 
+    /**
+     *
+     * @param x
+     * @param y
+     * @return
+     */
     public Square getSquare(int x, int y) {
         return board[x][y];
     }

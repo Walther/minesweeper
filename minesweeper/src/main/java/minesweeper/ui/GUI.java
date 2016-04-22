@@ -39,6 +39,9 @@ public class GUI {
 
     private boolean playing;
 
+    /**
+     *
+     */
     public GUI() {
         JFrame win = new JFrame();
         win.setLayout(new GridBagLayout());

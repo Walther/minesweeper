@@ -35,13 +35,39 @@ public class Game {
     // Game checks status
     // Game returns status
 
+    /**
+     *
+     */
+
     public boolean playing;
+
+    /**
+     *
+     */
     public boolean won;
+
+    /**
+     *
+     */
     public final Board board;
+
+    /**
+     *
+     */
     public final int height;
+
+    /**
+     *
+     */
     public final int width;
     private final int mines;
 
+    /**
+     *
+     * @param x
+     * @param y
+     * @param mines
+     */
     public Game(int x, int y, int mines) {
         this.playing = true;
         this.won = false;
@@ -51,6 +77,11 @@ public class Game {
         this.board = new Board(x, y, mines); // Default board. Change later to support asking for details
     }
 
+    /**
+     *
+     * @param x
+     * @param y
+     */
     public void turn(int x, int y) {
         // step on the board
         board.step(x, y);

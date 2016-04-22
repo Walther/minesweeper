@@ -32,19 +32,32 @@ public class Square {
     private boolean visible;
     private int value;
 
+    /**
+     *
+     */
     public Square() {
         this.visible = false;
         this.value = 0; // 0-8 = amount of mines in the square's surroundings, 9 = mine
     }
 
+    /**
+     *
+     */
     public void setVisible() {
         this.visible = true;
     }
 
+    /**
+     *
+     */
     public void setMine() {
         this.value = 9;
     }
 
+    /**
+     *
+     * @param value
+     */
     public void setValue(int value) {
         if (value >= 0 && value < 10) {
             this.value = value;
@@ -53,27 +66,51 @@ public class Square {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isMine() {
         return this.value == 9;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isEmpty() {
         return this.value == 0;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return this.value + "";
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isVisible() {
         return this.visible;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isNumber() {
         return this.value > 0 && this.value < 9;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getValue() {
         return this.value;
     }

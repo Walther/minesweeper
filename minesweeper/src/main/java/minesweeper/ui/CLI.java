@@ -37,6 +37,10 @@ public class CLI {
 
     // Primitive CLI
     // Add actual clickable GUI later...
+
+    /**
+     *
+     */
     public CLI() {
         this.scan = new Scanner(System.in);
         System.out.println("Welcome to minesweeper!");
