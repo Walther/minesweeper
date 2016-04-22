@@ -24,16 +24,10 @@
 package minesweeper.logic;
 
 /**
- *
+ * Game class.
  * @author veeti "walther" haapsamo
  */
 public class Game {
-    // new Game();
-    // game inits Board
-    // on every turn, UI calls Game with a move
-    // Game uses Board
-    // Game checks status
-    // Game returns status
 
     /**
      * Game status, is a game ongoing?
@@ -47,17 +41,17 @@ public class Game {
     public boolean won;
 
     /**
-     * The board object for the game
+     * The board object for the game.
      */
     public final Board board;
 
     /**
-     * Height of the board
+     * Height of the board.
      */
     public final int height;
 
     /**
-     * Width of the board
+     * Width of the board.
      */
     public final int width;
     
@@ -80,7 +74,7 @@ public class Game {
     }
 
     /**
-     * Abstraction of one turn
+     * Abstraction of one turn.
      * 
      * @param x Coordinate x of where to play
      * @param y Coordinate y of where to play

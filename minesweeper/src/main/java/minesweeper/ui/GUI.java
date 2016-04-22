@@ -32,7 +32,7 @@ import java.awt.event.ActionListener;
 import minesweeper.logic.Game;
 
 /**
- *
+ * Graphical user interface.
  * @author veeti "walther" haapsamo
  */
 public class GUI {
@@ -40,7 +40,7 @@ public class GUI {
     private boolean playing;
 
     /**
-     * A simple graphical user interface for the game
+     * A simple graphical user interface for the game.
      */
     public GUI() {
         JFrame win = new JFrame();

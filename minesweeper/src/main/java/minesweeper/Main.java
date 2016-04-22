@@ -27,13 +27,14 @@ import minesweeper.ui.CLI;
 import minesweeper.ui.GUI;
 
 /**
- *
+ * Main class for Minesweeper.
  * @author veeti "walther" haapsamo
  */
 public class Main {
 
     /**
-     *
+     * Main method - calls GUI or CLI.
+     * @param args compulsory default java String[] args
      */
     public static void main(String[] args) {
         //CLI gui = new CLI();

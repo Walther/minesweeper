@@ -1,32 +1,9 @@
-/*
- * The MIT License
- *
- * Copyright 2016 veeti "walther" haapsamo.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package minesweeper.logic;
 
 import java.util.Random;
 
 /**
- *
+ * Board class.
  * @author veeti "walther" haapsamo
  */
 public class Board {
@@ -38,7 +15,7 @@ public class Board {
     private final int height;
 
     /**
-     * Stores the board state
+     * Stores the board state.
      * 
      * @param width width of the board
      * @param height height of the board
@@ -67,7 +44,6 @@ public class Board {
     }
 
     void addMines() {
-        // Add mines
         int addedMines = 0;
         while (addedMines < this.mines) {
             int randomX = rn.nextInt(this.width);
@@ -81,9 +57,8 @@ public class Board {
     }
 
     // NOTE: has to be public due test cases, we need to be able to precisely set mines and recount
-
     /**
-     * Add numbers to the board state
+     * Add numbers to the board state.
      */
     public void addNumbers() {
         // Calculate number values for squares
@@ -99,9 +74,8 @@ public class Board {
     }
 
     // NOTE: for testing purposes only. TODO: clean up this hack somehow!
-
     /**
-     * Counts the number of mines on the board
+     * Counts the number of mines on the board.
      */
     public void recountMines() {
         int minesOnBoard = 0;
@@ -136,8 +110,7 @@ public class Board {
     }
 
     /**
-     * Prettyprint of board state, for CLI purposes
-     * 
+     * Prettyprint of board state, for CLI purposes.
      * @return string representation of board
      */
     @Override
@@ -159,9 +132,7 @@ public class Board {
     }
 
     /**
-     *  Step onto a square. Following things happen:
-     * - The square you stepped on is revealed
-     * - If hit an empty square, fill outwards
+     *  Step onto a square. The square you stepped on is revealed. If you hit an empty square, fill outwards.
      *
      * @param stepX Coordinate x
      * @param stepY Coordinate y
@@ -191,8 +162,7 @@ public class Board {
     }
 
     /**
-     * Counts the number of invisible / unseen squares on board
-     * 
+     * Counts the number of invisible / unseen squares on board.
      * @return number of unseen squares
      */
     public int invisibleCount() {
@@ -208,8 +178,7 @@ public class Board {
     }
 
     /**
-     * Returns a Square object from the board
-     * 
+     * Returns a Square object from the board.
      * @param x Coordinate x of square to request
      * @param y Coordinate y of square to request
      * @return the Square object
@@ -219,7 +188,7 @@ public class Board {
     }
 
     /**
-     * Returns number of mines on board
+     * Returns number of mines on board.
      */
     int getMines() {
         return this.mines;

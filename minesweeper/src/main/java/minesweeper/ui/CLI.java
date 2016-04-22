@@ -28,7 +28,7 @@ import java.util.Scanner;
 import minesweeper.logic.Game;
 
 /**
- *
+ * Command line interface.
  * @author veeti "walther" haapsamo
  */
 public class CLI {
@@ -37,7 +37,7 @@ public class CLI {
 
 
     /**
-     * A simple enough command line interface for playing the game
+     * A simple enough command line interface for playing the game.
      */
     public CLI() {
         this.scan = new Scanner(System.in);
