@@ -57,7 +57,7 @@ public class Square {
 
     /**
      * Setting a number value to a square
-     * @param value
+     * @param value numeric state to set for a square, 0-8
      */
     public void setValue(int value) {
         if (value >= 0 && value < 10) {

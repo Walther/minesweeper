@@ -33,7 +33,7 @@ import minesweeper.logic.Game;
 
 /**
  *
- * @author veeti "walther" haapsamo // Help received from nikanj, thanks <3
+ * @author veeti "walther" haapsamo
  */
 public class GUI {
 

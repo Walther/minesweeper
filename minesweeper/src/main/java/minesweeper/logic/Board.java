@@ -40,9 +40,9 @@ public class Board {
     /**
      * Stores the board state
      * 
-     * @param width
-     * @param height
-     * @param mines
+     * @param width width of the board
+     * @param height height of the board
+     * @param mines amount of mines to place on board
      */
     public Board(int width, int height, int mines) {
         this.width = width;
@@ -138,7 +138,7 @@ public class Board {
     /**
      * Prettyprint of board state, for CLI purposes
      * 
-     * @return
+     * @return string representation of board
      */
     @Override
     public String toString() {
@@ -158,17 +158,13 @@ public class Board {
         return ret;
     }
 
-    // Step onto a square. Following things happen:
-    // - The square you stepped on is revealed
-    // - If hit an empty square, fill outwards
-
     /**
      *  Step onto a square. Following things happen:
      * - The square you stepped on is revealed
      * - If hit an empty square, fill outwards
      *
-     * @param stepX
-     * @param stepY
+     * @param stepX Coordinate x
+     * @param stepY Coordinate y
      */
     public void step(int stepX, int stepY) {
         this.board[stepX][stepY].setVisible();
@@ -197,7 +193,7 @@ public class Board {
     /**
      * Counts the number of invisible / unseen squares on board
      * 
-     * @return
+     * @return number of unseen squares
      */
     public int invisibleCount() {
         int count = 0;
@@ -213,9 +209,10 @@ public class Board {
 
     /**
      * Returns a Square object from the board
-     * @param x
-     * @param y
-     * @return
+     * 
+     * @param x Coordinate x of square to request
+     * @param y Coordinate y of square to request
+     * @return the Square object
      */
     public Square getSquare(int x, int y) {
         return board[x][y];
