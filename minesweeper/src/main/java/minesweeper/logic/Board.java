@@ -32,7 +32,7 @@ import java.util.Random;
 public class Board {
 
     private final Square[][] board;
-    private int mines;
+    int mines;
     Random rn = new Random();
     private final int width;
     private final int height;
@@ -66,7 +66,7 @@ public class Board {
         }
     }
 
-    private void addMines() {
+    void addMines() {
         // Add mines
         int addedMines = 0;
         while (addedMines < this.mines) {
@@ -216,5 +216,12 @@ public class Board {
      */
     public Square getSquare(int x, int y) {
         return board[x][y];
+    }
+
+    /**
+     * Returns number of mines on board
+     */
+    int getMines() {
+        return this.mines;
     }
 }

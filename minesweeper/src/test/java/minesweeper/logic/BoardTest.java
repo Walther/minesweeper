@@ -103,4 +103,18 @@ public class BoardTest {
         assertEquals(result, true);
     }
     
+    /**
+     * Test of addMines method, of class Board.
+     */
+    @Test
+    public void testAddMines() {
+        // Set up a 3x1 board
+        instance = new Board(3,1,0);
+        // Set more mines
+        instance.mines = 1;
+        instance.addMines();
+        int result = instance.getMines();
+        assertEquals(result, 1);
+    }
+    
 }
