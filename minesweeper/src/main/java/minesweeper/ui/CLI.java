@@ -35,11 +35,9 @@ public class CLI {
 
     private final Scanner scan;
 
-    // Primitive CLI
-    // Add actual clickable GUI later...
 
     /**
-     *
+     * A simple enough command line interface for playing the game
      */
     public CLI() {
         this.scan = new Scanner(System.in);

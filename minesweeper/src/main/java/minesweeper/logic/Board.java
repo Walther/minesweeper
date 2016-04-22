@@ -38,7 +38,8 @@ public class Board {
     private final int height;
 
     /**
-     *
+     * Stores the board state
+     * 
      * @param width
      * @param height
      * @param mines
@@ -82,7 +83,7 @@ public class Board {
     // NOTE: has to be public due test cases, we need to be able to precisely set mines and recount
 
     /**
-     *
+     * Add numbers to the board state
      */
     public void addNumbers() {
         // Calculate number values for squares
@@ -100,7 +101,7 @@ public class Board {
     // NOTE: for testing purposes only. TODO: clean up this hack somehow!
 
     /**
-     *
+     * Counts the number of mines on the board
      */
     public void recountMines() {
         int minesOnBoard = 0;
@@ -135,7 +136,8 @@ public class Board {
     }
 
     /**
-     *
+     * Prettyprint of board state, for CLI purposes
+     * 
      * @return
      */
     @Override
@@ -161,6 +163,9 @@ public class Board {
     // - If hit an empty square, fill outwards
 
     /**
+     *  Step onto a square. Following things happen:
+     * - The square you stepped on is revealed
+     * - If hit an empty square, fill outwards
      *
      * @param stepX
      * @param stepY
@@ -190,7 +195,8 @@ public class Board {
     }
 
     /**
-     *
+     * Counts the number of invisible / unseen squares on board
+     * 
      * @return
      */
     public int invisibleCount() {
@@ -206,7 +212,7 @@ public class Board {
     }
 
     /**
-     *
+     * Returns a Square object from the board
      * @param x
      * @param y
      * @return

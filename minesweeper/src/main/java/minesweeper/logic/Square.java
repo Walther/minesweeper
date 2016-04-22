@@ -33,29 +33,30 @@ public class Square {
     private int value;
 
     /**
-     *
+     * Square object.
+     * 0-8 = amount of mines in the square's surroundings, 9 = mine
      */
     public Square() {
         this.visible = false;
-        this.value = 0; // 0-8 = amount of mines in the square's surroundings, 9 = mine
+        this.value = 0;
     }
 
     /**
-     *
+     * Visibility of a square
      */
     public void setVisible() {
         this.visible = true;
     }
 
     /**
-     *
+     * Setting a square to contain a mine
      */
     public void setMine() {
         this.value = 9;
     }
 
     /**
-     *
+     * Setting a number value to a square
      * @param value
      */
     public void setValue(int value) {
@@ -67,8 +68,8 @@ public class Square {
     }
 
     /**
-     *
-     * @return
+     * 
+     * @return true if the square contains a mine
      */
     public boolean isMine() {
         return this.value == 9;
@@ -76,7 +77,7 @@ public class Square {
 
     /**
      *
-     * @return
+     * @return true if the square doesn't contain a mine nor a number
      */
     public boolean isEmpty() {
         return this.value == 0;
@@ -84,7 +85,7 @@ public class Square {
 
     /**
      *
-     * @return
+     * @return String representation of square. For CLI purposes
      */
     @Override
     public String toString() {
@@ -93,7 +94,7 @@ public class Square {
 
     /**
      *
-     * @return
+     * @return true if square is visible / has been seen by user
      */
     public boolean isVisible() {
         return this.visible;
@@ -101,7 +102,7 @@ public class Square {
 
     /**
      *
-     * @return
+     * @return true if square contains a number representing the amount of nearby mines
      */
     public boolean isNumber() {
         return this.value > 0 && this.value < 9;
@@ -109,7 +110,7 @@ public class Square {
 
     /**
      *
-     * @return
+     * @return numeric representation of square state
      */
     public int getValue() {
         return this.value;

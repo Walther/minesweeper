@@ -40,7 +40,7 @@ public class GUI {
     private boolean playing;
 
     /**
-     *
+     * A simple graphical user interface for the game
      */
     public GUI() {
         JFrame win = new JFrame();

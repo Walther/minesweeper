@@ -36,37 +36,39 @@ public class Game {
     // Game returns status
 
     /**
-     *
+     * Game status, is a game ongoing?
      */
 
     public boolean playing;
 
     /**
-     *
+     * Has the game been won?
      */
     public boolean won;
 
     /**
-     *
+     * The board object for the game
      */
     public final Board board;
 
     /**
-     *
+     * Height of the board
      */
     public final int height;
 
     /**
-     *
+     * Width of the board
      */
     public final int width;
+    
     private final int mines;
 
     /**
-     *
-     * @param x
-     * @param y
-     * @param mines
+     * Game object.
+     * 
+     * @param x Width of board
+     * @param y Height of board
+     * @param mines Amount of mines on the board
      */
     public Game(int x, int y, int mines) {
         this.playing = true;
@@ -78,9 +80,10 @@ public class Game {
     }
 
     /**
-     *
-     * @param x
-     * @param y
+     * Abstraction of one turn
+     * 
+     * @param x Coordinate x of where to play
+     * @param y Coordinate y of where to play
      */
     public void turn(int x, int y) {
         // step on the board
