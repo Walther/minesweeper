@@ -10,4 +10,5 @@
 | 2016-04-01 | 20:00 - 21:00 | 1     | Further code cleaning. Add reports & an UML diagram                        |
 | 2016-04-08 | 22:00 - 00:00 | 2     | Refactoring code to smaller packages. CI stuff. Travis, Coveralls...       |
 | 2016-04-09 | 09:30 - 10:30 | 1     | Refactoring mineListener to own class. Refactoring Game to separate class. |
+| 2016-04-22 | 19:00 - 00:00 | 5     | Improving JavaDoc. Improving tests. Slight refactoring.                    |
 |            |               |       |                                                                            |
