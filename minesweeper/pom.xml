@@ -69,22 +69,19 @@
                 <version>2.7</version>
                 <configuration>
                     <format>xml</format>
+                    <format>html</format>
                     <maxmem>256m</maxmem>
                     <!-- aggregated reports for multi-module projects -->
                     <aggregate>true</aggregate>
                     <instrumentation>
                         <ignores>
                             <ignore>minesweeper.ui.*</ignore>
+                            <ignore>minesweeper.main.*</ignore>
                         </ignores>
-                        <excludes>
-                            <exclude>minesweeper/Main</exclude>
-                        </excludes>
                         <excludes>
                             <exclude>minesweeper/ui/*</exclude>
+                            <exclude>minesweeper/main/*</exclude>
                         </excludes>
-                        <ignores>
-                            <ignore>minesweeper.Main</ignore>
-                        </ignores>
                     </instrumentation>
                 </configuration>
             </plugin>
@@ -98,18 +95,14 @@
                 <version>2.7</version>
                 <configuration>
                     <instrumentation>
-                        <excludes>
-                            <exclude>minesweeper/ui/*</exclude>
-                        </excludes>
-                        <excludes>
-                            <exclude>minesweeper/Main</exclude>
-                        </excludes>
-                        <ignores>
-                            <ignore>minesweeper.Main</ignore>
-                        </ignores>
                         <ignores>
                             <ignore>minesweeper.ui.*</ignore>
+                            <ignore>minesweeper.main.*</ignore>
                         </ignores>
+                        <excludes>
+                            <exclude>minesweeper/ui/*</exclude>
+                            <exclude>minesweeper/main/*</exclude>
+                        </excludes>
                     </instrumentation>
                     <formats>
                         <format>html</format>
