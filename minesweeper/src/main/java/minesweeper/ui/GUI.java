@@ -29,10 +29,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import minesweeper.logic.Game;
 
 /**
  * Graphical user interface.
+ *
  * @author veeti "walther" haapsamo
  */
 public class GUI {
@@ -60,21 +62,20 @@ public class GUI {
         JButton[] buttons = new JButton[width * height];
 
         // Main button logic
-        ActionListener mineListener;
-        mineListener = new MineListener(game, buttons);
-
+        //ActionListener mineListener = new MineListener(game, buttons);
         // Add buttons for each square of the board
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 c.gridx = x;
                 c.gridy = y;
-                JButton btn = new JButton(" ");
-                buttons[y * width + x] = btn;
-                btn.addActionListener(mineListener);
-                btn.setFont(new Font("Monospace", Font.BOLD, 16));
-                btn.setMargin(new Insets(0, 0, 0, 0));
+                JButton button = new JButton(" ");
+                buttons[y * width + x] = button;
+                MineListener mineListener = new MineListener(game, buttons, button);
+                button.addMouseListener(mineListener);
+                button.setFont(new Font("Monospace", Font.BOLD, 16));
+                button.setMargin(new Insets(0, 0, 0, 0));
 
-                win.add(btn, c);
+                win.add(button, c);
 
             }
         }

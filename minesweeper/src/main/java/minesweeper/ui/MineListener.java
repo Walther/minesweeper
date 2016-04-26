@@ -26,7 +26,11 @@ package minesweeper.ui;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JButton;
+import javax.swing.SwingUtilities;
 import minesweeper.logic.Game;
 import minesweeper.logic.Square;
 
@@ -34,29 +38,68 @@ import minesweeper.logic.Square;
  *
  * @author veeti "walther" haapsamo
  */
-class MineListener implements ActionListener {
+class MineListener extends MouseAdapter {
 
     private final Game game;
     private final JButton[] buttons;
     private final int height;
     private final int width;
+    private final JButton button;
 
-    public MineListener(Game game, JButton[] buttons) {
+    public MineListener(Game game, JButton[] buttons, JButton button) {
         this.game = game;
         this.buttons = buttons;
+        this.button = button;
         this.width = game.width;
         this.height = game.height;
     }
 
+    boolean pressed;
+
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void mousePressed(MouseEvent e) {
+        button.getModel().setArmed(true);
+        button.getModel().setPressed(true);
+        pressed = true;
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        button.getModel().setArmed(false);
+        button.getModel().setPressed(false);
+
+        if (pressed) {
+            if (SwingUtilities.isRightMouseButton(e)) {
+                button.setText("F");
+            } else {
+                step(e);
+            }
+        }
+        pressed = false;
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        pressed = false;
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        pressed = true;
+    }
+
+    private void step(MouseEvent e) {
         // Step into the coordinate of button
         int index = java.util.Arrays.asList(buttons).indexOf(e.getSource());
         int x = index / width;
         int y = index % width;
 
         game.turn(x, y);
+        updateButtons();
+    }
 
+    private void updateButtons() {
         // Update all buttons
         for (int i = 0; i < width * height; i++) {
             int allY = i / width;
@@ -115,8 +158,9 @@ class MineListener implements ActionListener {
                 }
                 currentButton.setText("*");
                 for (JButton btn : buttons) {
-                    btn.removeActionListener(this);
-
+                    for (MouseListener l : btn.getMouseListeners()) {
+                        btn.removeMouseListener(l);
+                    }
                 }
             }
 
