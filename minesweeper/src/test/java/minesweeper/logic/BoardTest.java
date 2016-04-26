@@ -90,6 +90,23 @@ public class BoardTest {
         assertEquals(expResult, result);
     }
     
+    @Test
+    public void testStepRecursion() {
+        // Set up a 4x1 board:
+        // [mine, number 1, empty, empty]
+        instance = new Board(4,1,0);
+        instance.getSquare(0,0).setMine();
+        instance.addNumbers();
+        instance.recountMines();
+        System.out.println("step");
+        int stepX = 3;
+        int stepY = 0;
+        instance.step(stepX, stepY);
+        String result = instance.toString();
+        String expResult = "?100\n";
+        assertEquals(expResult, result);
+    }
+    
     /**
      * Test of getSquare method, of class Board.
      */
