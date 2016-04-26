@@ -36,7 +36,7 @@ public class Board {
     private void clear() {
         for (int x = 0; x < this.width; x++) {
             for (int y = 0; y < this.height; y++) {
-                System.out.println("DEBUG: Trying to add a square at " + x + "," + y);
+                //System.out.println("DEBUG: Trying to add a square at " + x + "," + y);
                 this.board[x][y] = new Square();
                 System.out.println("DEBUG: added square at " + x + "," + y);
             }
@@ -86,6 +86,7 @@ public class Board {
                 }
             }
         }
+        System.out.println("DEBUG: recounted mines: " + minesOnBoard);
         this.mines = minesOnBoard;
     }
 
@@ -93,10 +94,10 @@ public class Board {
         int nearbyMines = 0;
         for (int k = i - 1; k <= i + 1; k++) { // three wide
             for (int l = j - 1; l <= j + 1; l++) { // three high
-                System.out.println("DEBUG: trying to see if " + l + "," + k + "has a mine");
+                //System.out.println("DEBUG: trying to see if " + l + "," + k + "has a mine");
                 try {
                     if (this.board[k][l].isMine()) {
-                        System.out.println("DEBUG: Had a mine");
+                        System.out.println("DEBUG: " + k + "," + l + "has a mine");
                         nearbyMines++;
                     }
                 } catch (ArrayIndexOutOfBoundsException exception) {
@@ -143,13 +144,13 @@ public class Board {
         if (this.board[stepX][stepY].isEmpty()) { 
             for (int x = stepX - 1; x <= stepX + 1; x++) { // three wide
                 for (int y = stepY - 1; y <= stepY + 1; y++) { // three high
-                    System.out.println("DEBUG: trying to see if " + y + "," + x + "is steppable");
+                    //System.out.println("DEBUG: trying to see if " + y + "," + x + "is steppable");
                     try {
                         if (this.board[x][y].isEmpty() && !this.board[x][y].isVisible()) {
-                            System.out.println("DEBUG: Was steppable, stepping");
+                            //System.out.println("DEBUG: Was steppable, stepping");
                             this.step(x, y);
                         } else if (!this.board[x][y].isMine()) {
-                            System.out.println("DEBUG: Hit a number instead, only revealing");
+                            //System.out.println("DEBUG: Hit a number instead, only revealing");
                             this.board[x][y].setVisible();
                         }
                     } catch (ArrayIndexOutOfBoundsException exception) {

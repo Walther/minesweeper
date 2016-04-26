@@ -117,4 +117,20 @@ public class BoardTest {
         assertEquals(result, 1);
     }
     
+    /**
+     * Test of recountMines method, of class Board.
+     */
+    @Test
+    public void recountMines() {
+        // Set up a 3x1 board
+        instance = new Board(3,1,0);
+        // Set more mines
+        // Set more mines
+        instance.mines = 1;
+        instance.addMines();
+        instance.recountMines();
+        int result = instance.getMines();
+        assertEquals(result, instance.mines);
+    }
+    
 }

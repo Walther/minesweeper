@@ -55,7 +55,7 @@ public class Game {
      */
     public final int width;
     
-    private final int mines;
+    final int mines;
 
     /**
      * Game object.
@@ -85,7 +85,7 @@ public class Game {
         // check status
         if (board.getSquare(x, y).isMine()) {
             this.playing = false;
-        } else if (board.invisibleCount() == this.mines) { // TODO: make win logic better. Include flagging.
+        } else if (board.invisibleCount() == board.mines) { // TODO: make win logic better. Include flagging.
             this.won = true;
             this.playing = false;
         }
