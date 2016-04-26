@@ -53,9 +53,9 @@ public class GUI {
         c.weightx = 1;
         c.weighty = 1;
 
-        int width = 20;
-        int height = 20;
-        int mines = 40;
+        int width = 10;
+        int height = 10;
+        int mines = 2;
 
         Game game = new Game(width, height, mines);
         Board board = game.board;
@@ -70,7 +70,7 @@ public class GUI {
                 c.gridy = y;
                 JButton button = new JButton(" ");
                 buttons[y * width + x] = button;
-                MineListener mineListener = new MineListener(game, buttons, button);
+                MineListener mineListener = new MineListener(game, buttons, button, game.board.getSquare(x, y));
                 button.addMouseListener(mineListener);
                 button.setFont(new Font("Monospace", Font.BOLD, 16));
                 button.setMargin(new Insets(0, 0, 0, 0));

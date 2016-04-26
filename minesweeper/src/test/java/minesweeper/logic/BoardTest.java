@@ -130,7 +130,7 @@ public class BoardTest {
         // Set more mines
         instance.mines = 1;
         instance.addMines();
-        int result = instance.getMines();
+        int result = instance.getMineCount();
         assertEquals(result, 1);
     }
     
@@ -146,7 +146,7 @@ public class BoardTest {
         instance.mines = 1;
         instance.addMines();
         instance.recountMines();
-        int result = instance.getMines();
+        int result = instance.getMineCount();
         assertEquals(result, instance.mines);
     }
     

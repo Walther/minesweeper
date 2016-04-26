@@ -93,7 +93,7 @@ public class GameTest {
         int y = 0;
         instance.turn(x, y);
         System.out.println("playing, won: " + instance.playing + "," + instance.won);
-        System.out.println("this.mines, getMines: " + instance.board.mines + "," + instance.board.getMines());
+        System.out.println("this.mines, getMines: " + instance.board.mines + "," + instance.board.getMineCount());
         System.out.println("invisiblecount: " + instance.board.invisibleCount());
         assert(instance.playing == false);
         assert(instance.won == true);

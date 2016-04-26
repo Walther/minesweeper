@@ -1,9 +1,12 @@
 package minesweeper.logic;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
  * Board class.
+ *
  * @author veeti "walther" haapsamo
  */
 public class Board {
@@ -16,7 +19,7 @@ public class Board {
 
     /**
      * Stores the board state.
-     * 
+     *
      * @param width width of the board
      * @param height height of the board
      * @param mines amount of mines to place on board
@@ -112,6 +115,7 @@ public class Board {
 
     /**
      * Prettyprint of board state, for CLI purposes.
+     *
      * @return string representation of board
      */
     @Override
@@ -133,7 +137,8 @@ public class Board {
     }
 
     /**
-     *  Step onto a square. The square you stepped on is revealed. If you hit an empty square, fill outwards.
+     * Step onto a square. The square you stepped on is revealed. If you hit an
+     * empty square, fill outwards.
      *
      * @param stepX Coordinate x
      * @param stepY Coordinate y
@@ -141,7 +146,7 @@ public class Board {
     public void step(int stepX, int stepY) {
         this.board[stepX][stepY].setVisible();
 
-        if (this.board[stepX][stepY].isEmpty()) { 
+        if (this.board[stepX][stepY].isEmpty()) {
             for (int x = stepX - 1; x <= stepX + 1; x++) { // three wide
                 for (int y = stepY - 1; y <= stepY + 1; y++) { // three high
                     //System.out.println("DEBUG: trying to see if " + y + "," + x + "is steppable");
@@ -164,6 +169,7 @@ public class Board {
 
     /**
      * Counts the number of invisible / unseen squares on board.
+     *
      * @return number of unseen squares
      */
     public int invisibleCount() {
@@ -179,7 +185,42 @@ public class Board {
     }
 
     /**
+     * Returns flagged squares on the board.
+     *
+     * @return flagged squares
+     */
+    public ArrayList<Square> getFlagged() {
+        ArrayList<Square> flagged = new ArrayList();
+        for (int i = 0; i < this.width; i++) {
+            for (int j = 0; j < this.height; j++) {
+                if (!this.board[i][j].isFlagged()) {
+                    flagged.add(this.board[i][j]);
+                }
+            }
+        }
+        return flagged;
+    }
+    
+    /**
+     * Returns mine squares on the board.
+     *
+     * @return mine squares
+     */
+    public ArrayList<Square> getMines() {
+        ArrayList<Square> flagged = new ArrayList();
+        for (int i = 0; i < this.width; i++) {
+            for (int j = 0; j < this.height; j++) {
+                if (!this.board[i][j].isMine()) {
+                    flagged.add(this.board[i][j]);
+                }
+            }
+        }
+        return flagged;
+    }
+
+    /**
      * Returns a Square object from the board.
+     *
      * @param x Coordinate x of square to request
      * @param y Coordinate y of square to request
      * @return the Square object
@@ -191,7 +232,7 @@ public class Board {
     /**
      * Returns number of mines on board.
      */
-    int getMines() {
+    int getMineCount() {
         return this.mines;
     }
 }

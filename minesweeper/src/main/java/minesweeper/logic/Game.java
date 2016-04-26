@@ -23,6 +23,8 @@
  */
 package minesweeper.logic;
 
+import java.util.ArrayList;
+
 /**
  * Game class.
  * @author veeti "walther" haapsamo
@@ -85,9 +87,16 @@ public class Game {
         // check status
         if (board.getSquare(x, y).isMine()) {
             this.playing = false;
-        } else if (board.invisibleCount() == board.mines) { // TODO: make win logic better. Include flagging.
+        } else if (board.invisibleCount() == board.mines) { // TODO: utilize flagsCorrect
             this.won = true;
             this.playing = false;
+            System.out.println("Won the game!");
         }
+    }
+
+    private boolean flagsCorrect() {
+        ArrayList<Square>flagList = board.getFlagged();
+        ArrayList<Square>mineList = board.getMines();
+        return flagList.containsAll(mineList) && mineList.containsAll(flagList) && mineList.size() == flagList.size();
     }
 }

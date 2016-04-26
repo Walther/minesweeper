@@ -31,6 +31,7 @@ public class Square {
 
     private boolean visible;
     private int value;
+    private boolean flagged;
 
     /**
      * Square object.
@@ -46,6 +47,13 @@ public class Square {
      */
     public void setVisible() {
         this.visible = true;
+    }
+    
+    /**
+     * Flaggedness of a square.
+     */
+    public void toggleFlag() {
+        this.flagged = !this.flagged;
     }
 
     /**
@@ -98,6 +106,14 @@ public class Square {
      */
     public boolean isVisible() {
         return this.visible;
+    }
+    
+    /**
+     * Flaggedness of a square.
+     * @return true if square is flagged by user.
+     */
+    public boolean isFlagged() {
+        return this.flagged;
     }
 
     /**

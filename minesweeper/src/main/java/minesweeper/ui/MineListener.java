@@ -45,11 +45,13 @@ class MineListener extends MouseAdapter {
     private final int height;
     private final int width;
     private final JButton button;
+    private Square square;
 
-    public MineListener(Game game, JButton[] buttons, JButton button) {
+    public MineListener(Game game, JButton[] buttons, JButton button, Square square) {
         this.game = game;
         this.buttons = buttons;
         this.button = button;
+        this.square = square;
         this.width = game.width;
         this.height = game.height;
     }
@@ -70,7 +72,12 @@ class MineListener extends MouseAdapter {
 
         if (pressed) {
             if (SwingUtilities.isRightMouseButton(e)) {
-                button.setText("F");
+                if (button.getText() == " ") {
+                    button.setText("F");
+                } else {
+                    button.setText(" ");
+                }
+                square.toggleFlag();
             } else {
                 step(e);
             }
