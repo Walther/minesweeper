@@ -1,7 +1,6 @@
 package minesweeper.logic;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -159,9 +158,7 @@ public class Board {
                             this.board[x][y].setVisible();
                         }
                     } catch (ArrayIndexOutOfBoundsException exception) {
-
                     }
-
                 }
             }
         }
@@ -200,7 +197,7 @@ public class Board {
         }
         return flagged;
     }
-    
+
     /**
      * Returns mine squares on the board.
      *

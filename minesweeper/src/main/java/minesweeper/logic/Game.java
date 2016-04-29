@@ -27,6 +27,7 @@ import java.util.ArrayList;
 
 /**
  * Game class.
+ *
  * @author veeti "walther" haapsamo
  */
 public class Game {
@@ -34,7 +35,6 @@ public class Game {
     /**
      * Game status, is a game ongoing?
      */
-
     public boolean playing;
 
     /**
@@ -56,12 +56,12 @@ public class Game {
      * Width of the board.
      */
     public final int width;
-    
+
     final int mines;
 
     /**
      * Game object.
-     * 
+     *
      * @param x Width of board
      * @param y Height of board
      * @param mines Amount of mines on the board
@@ -77,7 +77,7 @@ public class Game {
 
     /**
      * Abstraction of one turn.
-     * 
+     *
      * @param x Coordinate x of where to play
      * @param y Coordinate y of where to play
      */
@@ -88,6 +88,7 @@ public class Game {
         if (board.getSquare(x, y).isMine()) {
             this.playing = false;
         } else if (board.invisibleCount() == board.mines) { // TODO: utilize flagsCorrect
+            //} else if (flagsCorrect()) { // WHEN USING FLAGGING, FAILS ONE TEST
             this.won = true;
             this.playing = false;
             System.out.println("Won the game!");
@@ -95,8 +96,8 @@ public class Game {
     }
 
     private boolean flagsCorrect() {
-        ArrayList<Square>flagList = board.getFlagged();
-        ArrayList<Square>mineList = board.getMines();
+        ArrayList<Square> flagList = board.getFlagged();
+        ArrayList<Square> mineList = board.getMines();
         return flagList.containsAll(mineList) && mineList.containsAll(flagList) && mineList.size() == flagList.size();
     }
 }

@@ -25,6 +25,7 @@ package minesweeper.logic;
 
 /**
  * Square class.
+ *
  * @author veeti "walther" haapsamo
  */
 public class Square {
@@ -34,8 +35,8 @@ public class Square {
     private boolean flagged;
 
     /**
-     * Square object.
-     * 0-8 = amount of mines in the square's surroundings, 9 = mine
+     * Square object. 0-8 = amount of mines in the square's surroundings, 9 =
+     * mine
      */
     public Square() {
         this.visible = false;
@@ -47,13 +48,16 @@ public class Square {
      */
     public void setVisible() {
         this.visible = true;
+        this.flagged = false;
     }
-    
+
     /**
      * Flaggedness of a square.
      */
     public void toggleFlag() {
-        this.flagged = !this.flagged;
+        if (!this.visible) {
+            this.flagged = !this.flagged;
+        }
     }
 
     /**
@@ -65,6 +69,7 @@ public class Square {
 
     /**
      * Setting a number value to a square.
+     *
      * @param value numeric state to set for a square, 0-8
      */
     public void setValue(int value) {
@@ -76,7 +81,8 @@ public class Square {
     }
 
     /**
-     *  Checks whether a mine contains a square or not.
+     * Checks whether a mine contains a square or not.
+     *
      * @return true if the square contains a mine.
      */
     public boolean isMine() {
@@ -85,6 +91,7 @@ public class Square {
 
     /**
      * Checks if the square is empty.
+     *
      * @return true if the square doesn't contain a mine nor a number.
      */
     public boolean isEmpty() {
@@ -93,6 +100,7 @@ public class Square {
 
     /**
      * String representation.
+     *
      * @return String representation of square. For CLI purposes.
      */
     @Override
@@ -102,14 +110,16 @@ public class Square {
 
     /**
      * Visibility of a square.
+     *
      * @return true if square is visible / has been seen by user.
      */
     public boolean isVisible() {
         return this.visible;
     }
-    
+
     /**
      * Flaggedness of a square.
+     *
      * @return true if square is flagged by user.
      */
     public boolean isFlagged() {
@@ -118,7 +128,9 @@ public class Square {
 
     /**
      * Return if square contains a number.
-     * @return true if square contains a number representing the amount of nearby mines.
+     *
+     * @return true if square contains a number representing the amount of
+     * nearby mines.
      */
     public boolean isNumber() {
         return this.value > 0 && this.value < 9;
@@ -126,6 +138,7 @@ public class Square {
 
     /**
      * Numeric representation.
+     *
      * @return numeric representation of square state.
      */
     public int getValue() {

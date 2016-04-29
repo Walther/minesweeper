@@ -72,12 +72,8 @@ class MineListener extends MouseAdapter {
 
         if (pressed) {
             if (SwingUtilities.isRightMouseButton(e)) {
-                if (button.getText() == " ") {
-                    button.setText("F");
-                } else {
-                    button.setText(" ");
-                }
                 square.toggleFlag();
+                updateButtons();
             } else {
                 step(e);
             }
@@ -120,8 +116,12 @@ class MineListener extends MouseAdapter {
                 currentButton.setBackground(new Color(27, 28, 22));
             }
             // No text on empty squares
-            if (currentSquare.isEmpty() && currentSquare.isVisible()) {
+            if (currentSquare.isEmpty() && currentSquare.isVisible() && !currentSquare.isFlagged()) {
                 currentButton.setText(" ");
+            }
+            // F on flagged squares
+            if (currentSquare.isFlagged() && !currentSquare.isVisible()) {
+                currentButton.setText("F");
             }
             // Set number on number square buttons
             if (currentSquare.isNumber() && currentSquare.isVisible()) {
