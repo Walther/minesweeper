@@ -60,7 +60,6 @@ public class GUI {
         int mines = 10;
 
         Game game = new Game(width, height, mines);
-        Board board = game.board;
         JButton[] buttons = new JButton[width * height];
 
         // Main button logic
