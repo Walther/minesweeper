@@ -79,7 +79,6 @@ class MineListener extends MouseAdapter {
             }
         }
         pressed = false;
-
     }
 
     @Override
@@ -167,13 +166,11 @@ class MineListener extends MouseAdapter {
                     default:
                         break;
                 }
-
             }
             // If we've lost, turn stepped square red, show all mines, and disable all buttons
             if (!game.playing && !game.won && currentSquare.isMine()) {
                 if (currentSquare.isVisible()) {
                     currentButton.setBackground(new Color(0xf92672));
-
                 }
                 currentButton.setText("*");
                 for (JButton btn : buttons) {
@@ -186,7 +183,6 @@ class MineListener extends MouseAdapter {
         return true; //Return that we've successfully updated. This is just to fix the exit wait.
     }
 
-    // Short delay & exit.
     private void exit() {
         timer = new Timer();
         timer.schedule(new ExitTask(), 5000);
@@ -197,7 +193,7 @@ class MineListener extends MouseAdapter {
         @Override
         public void run() {
             System.exit(0);
-            timer.cancel(); //Terminate the timer thread
+            timer.cancel();
         }
     }
 }

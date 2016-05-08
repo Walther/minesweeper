@@ -99,8 +99,13 @@ public class Game {
         ArrayList<Square> mineList = board.getMines();
         return flagList.containsAll(mineList) && mineList.containsAll(flagList) && mineList.size() == flagList.size();
     }
-    
-    // Public so that it can be called when just flagging and not only when stepping. TODO: FIX!
+
+    /**
+     * Checks if the game has been won.
+     *
+     * Public so that it can be called when just flagging and not only when
+     * stepping. TODO: FIX!
+     */
     public void checkWon() {
         if (flagsCorrect()) {
             this.won = true;
