@@ -14,4 +14,5 @@
 | 2016-04-28 | 12:00 - 15:00 | 3     | Tests for Game. Initial flagging implementation; ActionListener -> MouseListener                   |
 | 2016-04-29 | 15:15 - 15:30 | 0.25  | Drafting proper flagging. Fix some checkstyle errors                                               |
 | 2016-05-08 | 15:30 - 17:45 | 2.25  | Bugfix: x-y axis flip when flagging. Delay+exit after end condition. Win condition based on flags. |
+| 2016-05-08 | 19:15 - 21:00 | 1.75  | Tidying up. Preparing 1.0 release. Adding testing documentation. Update reports                    |
 |            |               |       |                                                                                                    |
