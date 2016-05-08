@@ -29,8 +29,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import minesweeper.logic.Square;
-import static org.hamcrest.CoreMatchers.instanceOf;
 
 /**
  *
@@ -58,7 +56,6 @@ public class BoardTest {
         instance = new Board(3,1,0);
         instance.getSquare(0,0).setMine();
         instance.addNumbers();
-        instance.recountMines();
     }
     
     @After
@@ -97,7 +94,6 @@ public class BoardTest {
         instance = new Board(4,1,0);
         instance.getSquare(0,0).setMine();
         instance.addNumbers();
-        instance.recountMines();
         System.out.println("step");
         int stepX = 3;
         int stepY = 0;
@@ -130,24 +126,8 @@ public class BoardTest {
         // Set more mines
         instance.mines = 1;
         instance.addMines();
-        int result = instance.getMineCount();
+        int result = instance.mines;
         assertEquals(result, 1);
-    }
-    
-    /**
-     * Test of recountMines method, of class Board.
-     */
-    @Test
-    public void recountMines() {
-        // Set up a 3x1 board
-        instance = new Board(3,1,0);
-        // Set more mines
-        // Set more mines
-        instance.mines = 1;
-        instance.addMines();
-        instance.recountMines();
-        int result = instance.getMineCount();
-        assertEquals(result, instance.mines);
     }
     
 }

@@ -28,7 +28,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -55,7 +54,6 @@ public class GameTest {
         // [mine, number 1, empty]
         instance = new Game(3,1,0);
         instance.board.getSquare(0,0).setMine();
-        instance.board.recountMines();
         instance.board.addNumbers();
     }
     
@@ -95,7 +93,7 @@ public class GameTest {
         instance.board.getSquare(0, 0).toggleFlag();
         instance.checkWon();
         System.out.println("playing, won: " + instance.playing + "," + instance.won);
-        System.out.println("this.mines, getMines: " + instance.board.mines + "," + instance.board.getMineCount());
+        System.out.println("this.mines, getMines: " + instance.board.mines + "," + instance.board.mines);
         System.out.println("invisiblecount: " + instance.board.invisibleCount());
         assert(instance.playing == false);
         assert(instance.won == true);
