@@ -87,11 +87,13 @@ public class GameTest {
     }
     
     @Test
-    public void testTurnOnEmpty() {
+    public void testWin() {
         System.out.println("testTurnOnEmpty");
         int x = 2;
         int y = 0;
         instance.turn(x, y);
+        instance.board.getSquare(0, 0).toggleFlag();
+        instance.checkWon();
         System.out.println("playing, won: " + instance.playing + "," + instance.won);
         System.out.println("this.mines, getMines: " + instance.board.mines + "," + instance.board.getMineCount());
         System.out.println("invisiblecount: " + instance.board.invisibleCount());
