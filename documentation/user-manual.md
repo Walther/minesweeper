@@ -1,8 +1,10 @@
 # User manual
 
-Open the project in Netbeans. Run the project.
-
-You will see a minesweeper game appear! Resize the window if necessary.
-
-Flagging is still on todo-list, for now just click on presumably safe squares.
-If you step on a mine, the game is over. If you click open all the safe squares, you win!
+- Run the executable: `java -jar minesweeper-1.0.jar`
+- Click on squares you presume are empty
+- Right-click on squares you presume are mines
+- When all mines are flagged and all non-mine squares are opened, you win!
+- If you click on a square containing a mine, you will lose though - so be careful!
+- The numbers will provide help: a number will tell you how many mines are in its vicinity at a radius of one square
+- By default, the game contains 10x10 squares and 10 mines
+- After you win or lose, the game will exit after a 5 second delay
