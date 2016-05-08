@@ -55,7 +55,7 @@ public class GameTest {
         // [mine, number 1, empty]
         instance = new Game(3,1,0);
         instance.board.getSquare(0,0).setMine();
-        instance.board.recountMines();
+        instance.board.counter.recountMines(instance.board);
         instance.board.addNumbers();
     }
     
@@ -93,8 +93,8 @@ public class GameTest {
         int y = 0;
         instance.turn(x, y);
         System.out.println("playing, won: " + instance.playing + "," + instance.won);
-        System.out.println("this.mines, getMines: " + instance.board.mines + "," + instance.board.getMineCount());
-        System.out.println("invisiblecount: " + instance.board.invisibleCount());
+        System.out.println("this.mines, getMines: " + instance.board.mines + "," + instance.board.counter.getMineCount(instance.board));
+        System.out.println("invisiblecount: " + instance.board.counter.invisibleCount());
         assert(instance.playing == false);
         assert(instance.won == true);
     }
