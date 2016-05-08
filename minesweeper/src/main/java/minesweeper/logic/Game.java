@@ -87,6 +87,7 @@ public class Game {
         // check status
         if (board.getSquare(x, y).isMine()) {
             this.playing = false;
+            System.out.println("Lost the game!");
         } else if (board.invisibleCount() == board.mines) { // TODO: utilize flagsCorrect
             //} else if (flagsCorrect()) { // WHEN USING FLAGGING, FAILS ONE TEST
             this.won = true;
@@ -100,4 +101,5 @@ public class Game {
         ArrayList<Square> mineList = board.getMines();
         return flagList.containsAll(mineList) && mineList.containsAll(flagList) && mineList.size() == flagList.size();
     }
+
 }

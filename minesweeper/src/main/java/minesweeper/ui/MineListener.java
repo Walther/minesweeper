@@ -29,6 +29,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 import minesweeper.logic.Game;
@@ -72,8 +74,7 @@ class MineListener extends MouseAdapter {
 
         if (pressed) {
             if (SwingUtilities.isRightMouseButton(e)) {
-                square.toggleFlag();
-                updateButtons();
+                flag();
             } else {
                 step(e);
             }
@@ -92,6 +93,11 @@ class MineListener extends MouseAdapter {
         pressed = true;
     }
 
+    private void flag() {
+        square.toggleFlag();
+        updateButtons();
+    }
+
     private void step(MouseEvent e) {
         // Step into the coordinate of button
         int index = java.util.Arrays.asList(buttons).indexOf(e.getSource());
@@ -100,6 +106,7 @@ class MineListener extends MouseAdapter {
 
         game.turn(x, y);
         updateButtons();
+        exit();
     }
 
     private void updateButtons() {
@@ -170,8 +177,16 @@ class MineListener extends MouseAdapter {
                     }
                 }
             }
-
         }
+    }
+
+    private void exit() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.exit(0);
     }
 
 }
