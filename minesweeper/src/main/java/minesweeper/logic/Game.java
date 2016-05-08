@@ -87,7 +87,7 @@ public class Game {
         // check status
         if (board.getSquare(x, y).isMine()) {
             this.playing = false;
-        } else if (board.counter.invisibleCount() == board.mines) { // TODO: utilize flagsCorrect
+        } else if (board.invisibleCount() == board.mines) { // TODO: utilize flagsCorrect
             //} else if (flagsCorrect()) { // WHEN USING FLAGGING, FAILS ONE TEST
             this.won = true;
             this.playing = false;

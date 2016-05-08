@@ -58,7 +58,7 @@ public class BoardTest {
         instance = new Board(3,1,0);
         instance.getSquare(0,0).setMine();
         instance.addNumbers();
-        instance.counter.recountMines(instance);
+        instance.recountMines();
     }
     
     @After
@@ -97,7 +97,7 @@ public class BoardTest {
         instance = new Board(4,1,0);
         instance.getSquare(0,0).setMine();
         instance.addNumbers();
-        instance.counter.recountMines(instance);
+        instance.recountMines();
         System.out.println("step");
         int stepX = 3;
         int stepY = 0;
@@ -130,7 +130,7 @@ public class BoardTest {
         // Set more mines
         instance.mines = 1;
         instance.addMines();
-        int result = instance.counter.getMineCount(instance);
+        int result = instance.getMineCount();
         assertEquals(result, 1);
     }
     
@@ -145,8 +145,8 @@ public class BoardTest {
         // Set more mines
         instance.mines = 1;
         instance.addMines();
-        instance.counter.recountMines(instance);
-        int result = instance.counter.getMineCount(instance);
+        instance.recountMines();
+        int result = instance.getMineCount();
         assertEquals(result, instance.mines);
     }
     

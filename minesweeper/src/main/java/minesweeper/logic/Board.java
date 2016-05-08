@@ -10,12 +10,11 @@ import java.util.Random;
  */
 public class Board {
 
-    Square[][] board;
+    private final Square[][] board;
     int mines;
     Random rn = new Random();
-    final int width;
-    final int height;
-    Counter counter;
+    private final int width;
+    private final int height;
 
     /**
      * Stores the board state.
@@ -33,7 +32,6 @@ public class Board {
         clear();
         addMines();
         addNumbers();
-        this.counter = new Counter(this);
 
     }
 
@@ -69,7 +67,7 @@ public class Board {
         for (int x = 0; x < this.width; x++) {
             for (int y = 0; y < this.height; y++) {
                 if (!this.board[x][y].isMine()) {
-                    int nearby = counter.countNearbyMines(x, y, this);
+                    int nearby = countNearbyMines(x, y);
                     this.board[x][y].setValue(nearby);
                 }
 
@@ -77,6 +75,42 @@ public class Board {
         }
     }
 
+    // NOTE: for testing purposes only. TODO: clean up this hack somehow!
+    /**
+     * Counts the number of mines on the board.
+     */
+    public void recountMines() {
+        int minesOnBoard = 0;
+        for (int x = 0; x < this.width; x++) {
+            for (int y = 0; y < this.height; y++) {
+                if (this.board[x][y].isMine()) {
+                    minesOnBoard++;
+                }
+            }
+        }
+        System.out.println("DEBUG: recounted mines: " + minesOnBoard);
+        this.mines = minesOnBoard;
+    }
+
+    private int countNearbyMines(int i, int j) {
+        int nearbyMines = 0;
+        for (int k = i - 1; k <= i + 1; k++) { // three wide
+            for (int l = j - 1; l <= j + 1; l++) { // three high
+                //System.out.println("DEBUG: trying to see if " + l + "," + k + "has a mine");
+                try {
+                    if (this.board[k][l].isMine()) {
+                        System.out.println("DEBUG: " + k + "," + l + "has a mine");
+                        nearbyMines++;
+                    }
+                } catch (ArrayIndexOutOfBoundsException exception) {
+
+                }
+
+            }
+        }
+
+        return nearbyMines;
+    }
 
     /**
      * Prettyprint of board state, for CLI purposes.
@@ -130,6 +164,22 @@ public class Board {
         }
     }
 
+    /**
+     * Counts the number of invisible / unseen squares on board.
+     *
+     * @return number of unseen squares
+     */
+    public int invisibleCount() {
+        int count = 0;
+        for (int i = 0; i < this.width; i++) {
+            for (int j = 0; j < this.height; j++) {
+                if (!this.board[i][j].isVisible()) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
 
     /**
      * Returns flagged squares on the board.
@@ -176,4 +226,10 @@ public class Board {
         return board[x][y];
     }
 
+    /**
+     * Returns number of mines on board.
+     */
+    int getMineCount() {
+        return this.mines;
+    }
 }
