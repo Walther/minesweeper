@@ -76,7 +76,6 @@ public class Board {
             for (int l = j - 1; l <= j + 1; l++) { // three high
                 try {
                     if (this.squares[k][l].isMine()) {
-                        System.out.println("DEBUG: " + k + "," + l + "has a mine");
                         nearbyMines++;
                     }
                 } catch (ArrayIndexOutOfBoundsException exception) {
