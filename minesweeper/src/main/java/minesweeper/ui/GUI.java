@@ -53,9 +53,11 @@ public class GUI {
         c.weightx = 1;
         c.weighty = 1;
 
+        // Default board size
+        // Add ability to choose later.
         int width = 10;
         int height = 10;
-        int mines = 2;
+        int mines = 10;
 
         Game game = new Game(width, height, mines);
         Board board = game.board;

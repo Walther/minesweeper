@@ -95,8 +95,8 @@ class MineListener extends MouseAdapter {
     private void step(MouseEvent e) {
         // Step into the coordinate of button
         int index = java.util.Arrays.asList(buttons).indexOf(e.getSource());
-        int x = index / width;
-        int y = index % width;
+        int y = index / width;
+        int x = index % width;
 
         game.turn(x, y);
         updateButtons();
@@ -108,7 +108,7 @@ class MineListener extends MouseAdapter {
             int allY = i / width;
             int allX = i % width;
 
-            Square currentSquare = game.board.getSquare(allY, allX);
+            Square currentSquare = game.board.getSquare(allX, allY);
             JButton currentButton = buttons[i];
 
             // Disable clicking on visible / seen squares
