@@ -23,7 +23,6 @@
  */
 package minesweeper;
 
-import minesweeper.ui.CLI;
 import minesweeper.ui.GUI;
 
 /**
@@ -33,11 +32,10 @@ import minesweeper.ui.GUI;
 public class Main {
 
     /**
-     * Main method - calls GUI or CLI.
+     * Main method - calls GUI.
      * @param args compulsory default java String[] args
      */
     public static void main(String[] args) {
-        //CLI gui = new CLI();
         GUI gui = new GUI();
     }
 }
