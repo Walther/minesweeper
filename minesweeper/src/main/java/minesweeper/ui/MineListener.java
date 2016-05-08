@@ -94,7 +94,11 @@ class MineListener extends MouseAdapter {
 
     private void flag() {
         square.toggleFlag();
+        game.checkWon();
         updateButtons();
+        if (!game.playing && updateButtons()) {
+            exit();
+        }
     }
 
     private void step(MouseEvent e) {

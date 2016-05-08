@@ -88,11 +88,9 @@ public class Game {
         if (board.getSquare(x, y).isMine()) {
             this.playing = false;
             System.out.println("Lost the game!");
-        } else if (board.invisibleCount() == board.mines) { // TODO: utilize flagsCorrect
-            //} else if (flagsCorrect()) { // WHEN USING FLAGGING, FAILS ONE TEST
-            this.won = true;
-            this.playing = false;
-            System.out.println("Won the game!");
+            //} else if (board.invisibleCount() == board.mines) { // TODO: utilize flagsCorrect
+        } else {
+            checkWon();
         }
     }
 
@@ -101,5 +99,14 @@ public class Game {
         ArrayList<Square> mineList = board.getMines();
         return flagList.containsAll(mineList) && mineList.containsAll(flagList) && mineList.size() == flagList.size();
     }
+    
+    // Public so that it can be called when just flagging and not only when stepping. TODO: FIX!
+    public void checkWon() {
+        if (flagsCorrect()) {
+            this.won = true;
+            this.playing = false;
+            System.out.println("Won the game!");
+        }
 
+    }
 }
