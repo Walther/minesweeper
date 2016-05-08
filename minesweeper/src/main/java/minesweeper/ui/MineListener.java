@@ -24,15 +24,13 @@
 package minesweeper.ui;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
+import java.util.Timer;
+import java.util.TimerTask;
 import minesweeper.logic.Game;
 import minesweeper.logic.Square;
 
@@ -48,6 +46,7 @@ class MineListener extends MouseAdapter {
     private final int width;
     private final JButton button;
     private Square square;
+    private Timer timer;
 
     public MineListener(Game game, JButton[] buttons, JButton button, Square square) {
         this.game = game;
@@ -106,10 +105,12 @@ class MineListener extends MouseAdapter {
 
         game.turn(x, y);
         updateButtons();
-        exit();
+        if (!game.playing && updateButtons()) {
+            exit();
+        }
     }
 
-    private void updateButtons() {
+    private boolean updateButtons() {
         // Update all buttons
         for (int i = 0; i < width * height; i++) {
             int allY = i / width;
@@ -178,15 +179,21 @@ class MineListener extends MouseAdapter {
                 }
             }
         }
+        return true; //Return that we've successfully updated. This is just to fix the exit wait.
     }
 
+    // Short delay & exit.
     private void exit() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        System.exit(0);
+        timer = new Timer();
+        timer.schedule(new ExitTask(), 5000);
     }
 
+    class ExitTask extends TimerTask {
+
+        @Override
+        public void run() {
+            System.exit(0);
+            timer.cancel(); //Terminate the timer thread
+        }
+    }
 }
