@@ -17,3 +17,4 @@ Minesweeper written in Java for a university course.
 - [Structure](documentation/structure.md)
 - Most recent [PIT report](https://htmlpreview.github.io/?https://github.com/Walther/minesweeper/blob/master/documentation/pit-reports/201605082036/index.html)
 - Most recent [Checkstyle report](https://htmlpreview.github.io/?https://github.com/Walther/minesweeper/blob/master/documentation/checkstyle-reports/201605082041/checkstyle.html)
+- [Testing documentation](documentation/testing.md)
